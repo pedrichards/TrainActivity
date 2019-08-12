@@ -87,19 +87,19 @@ database.ref("/train").on("child_added", function (childSnapshot) {
 
   //The remainder of division of since-departure-time by frequency informs us
   //How much time remains until the train next arrives
-  var minsToNextTrain = sinceDeparture % trainFrequency;
+  var minsSinceLastStation = sinceDeparture % trainFrequency;
+  var minsToNextTrain = trainFrequency - minsSinceLastStation;
   //remainder * trainFrequency;
+  console.log("minssincelaststation " + minsSinceLastStation);
   console.log("minstonexttrain " + minsToNextTrain);
 
   //The time until the next train arrives plus current time gives us
   //the next train's arrival time
-  var timeNow = moment().format('HH:ss');
-  var nextTrainTime = timeNow.duration().add(minsToNextTrain, 'm')
+  var nextTrainTime = moment().add(minsToNextTrain, 'm').format('HH:mm');
+  // var nextTrainTime = timeNow.duration().add(minsToNextTrain, 'm')
   console.log("nexttraintime " + nextTrainTime);
+  console.log("timenow " + moment().format('HH:mm'));
 
-  //   // Calculate the total billed rate
-  //   var empBilled = empMonths * empRate;
-  //   console.log(empBilled);
 
   // Create the new row
   var newRow = $("<tr>").append(
