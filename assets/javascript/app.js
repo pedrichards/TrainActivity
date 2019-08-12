@@ -87,10 +87,10 @@ database.ref("/train").on("child_added", function (childSnapshot) {
 
   //The remainder of division of since-departure-time by frequency informs us
   //How much time remains until the train next arrives
-  var minsSinceLastStation = sinceDeparture % trainFrequency;
-  var minsToNextTrain = trainFrequency - minsSinceLastStation;
+  var minsSinceLastTrain = sinceDeparture % trainFrequency;
+  var minsToNextTrain = trainFrequency - minsSinceLastTrain;
   //remainder * trainFrequency;
-  console.log("minssincelaststation " + minsSinceLastStation);
+  console.log("minssincelasttrain " + minsSinceLastTrain);
   console.log("minstonexttrain " + minsToNextTrain);
 
   //The time until the next train arrives plus current time gives us
